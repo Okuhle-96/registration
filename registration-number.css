@@ -1,0 +1,487 @@
+body {
+margin: auto;
+width: 60%;
+font-family: helvetica;
+color: 	#5e1d00;
+border: 10px 0px 10px 10px solid #5e1d00;
+border-radius: 30px;
+height: 1000px;
+
+}
+
+.blockItems h1{
+border: 10px solid #5e1d00 ;
+padding: 20px;
+background-color: #5e1d00;
+color: white;
+text-transform: uppercase;
+text-align: center;
+font-weight: bolder;
+border-radius: 70px;
+margin-bottom: 50px;
+}
+
+.textArea {
+    width: 60%;
+    margin: auto;
+}
+
+.textArea label {
+ font-weight: bolder;
+}
+
+.textArea .input {
+    border: 5px solid #5e1d00;
+    border-radius: 30px;
+    padding: 10px;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.button {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 60px;
+}
+
+.button button {
+     text-decoration: none;
+            color: white;
+            font-weight: bolder;
+    background-color: #5e1d00;
+    border: #5e1d00;
+    width: 150px;
+    padding: 15px;
+    color: white;
+    border-radius: 30px;
+    float: left;
+    margin-right: 20px;
+}
+
+.button {
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+}
+
+.filter {
+    width: 60%;
+    margin: auto; 
+  
+}
+
+select {
+    width: 250px;
+    height: 40px;
+    text-align: center;
+    color: #5e1d00;
+    font-weight: bolder;
+    padding: 10px;
+    height: 50px;
+    background-color: white;
+    border: 5px solid #5e1d00;
+    border-radius: 30px;
+}
+
+.filter {
+    font-weight: bolder;
+}
+
+.value {
+    font-weight: bolder;
+    color: #5e1d00;
+    text-align: center;
+}
+
+.registrations{
+    width: 60%;
+    margin: auto;
+
+}
+.registrations .displayTown {
+    display: block;
+}
+
+.reg {
+    margin: 30px;
+    color: white;
+    width: 200px;
+    padding: 20px;
+    background-color: #5e1d00;
+    font-weight: bolder;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.confirmation {
+    text-align: center;
+    color: slategrey;
+    font-weight: bolder;
+}
+
+.button a {
+    color: gold;
+    text-decoration: none;
+}
+
+
+@media (max-width: 1024px){
+    body {
+        margin: auto;
+        width: 60%;
+        font-family: helvetica;
+        color: 	#5e1d00;
+        border: 10px 0px 10px 10px solid #5e1d00;
+        border-radius: 30px;
+        height: 1000px;
+        
+        }
+        
+        .blockItems h1{
+        border: 10px solid #5e1d00 ;
+        padding: 20px;
+        background-color: #5e1d00;
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: bolder;
+        border-radius: 70px;
+        margin-bottom: 50px;
+        }
+        
+        .textArea {
+            width: 60%;
+            margin: auto;
+        }
+        
+        .textArea label {
+         font-weight: bolder;
+        }
+        
+        .textArea .input {
+            border: 5px solid #5e1d00;
+            border-radius: 30px;
+            padding: 10px;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        
+        .button {
+            width: 60%;
+            margin: auto;
+            margin-bottom: 60px;
+        }
+        
+        .button button {
+             text-decoration: none;
+            color: white;
+            font-weight: bolder;
+            background-color: #5e1d00;
+            border: #5e1d00;
+            width: 150px;
+            padding: 15px;
+            color: white;
+            border-radius: 30px;
+            float: left;
+            margin-right: 20px;
+        }
+        
+        .button {
+            text-decoration: none;
+            color: white;
+            font-weight: bolder;
+        }
+        
+        .filter {
+            width: 60%;
+            margin: auto; 
+          
+        }
+        
+        select {
+            width: 250px;
+            height: 40px;
+            text-align: center;
+            color: #5e1d00;
+            font-weight: bolder;
+            padding: 10px;
+            height: 50px;
+            background-color: white;
+            border: 5px solid #5e1d00;
+            border-radius: 30px;
+        }
+        
+        .filter {
+            font-weight: bolder;
+        }
+        
+        .value {
+            font-weight: bolder;
+            color: #5e1d00;
+            text-align: center;
+        }
+        
+        .registrations{
+    
+            width: 60%;
+            margin: auto;
+        
+        }
+        .registrations .displayTown {
+            display: block;
+        }
+        
+        .reg {
+            margin: 30px;
+            color: white;
+            width: 200px;
+            padding: 20px;
+            background-color: #5e1d00;
+            font-weight: bolder;
+            border-radius: 30px;
+            text-align: center;
+        }
+        
+}
+
+
+
+@media (max-width: 768px){
+    body {
+        margin: auto;
+        width: 80%;
+        font-family: helvetica;
+        color: 	#5e1d00;
+        border: 10px 0px 10px 10px solid #5e1d00;
+        border-radius: 30px;
+        height: 1000px;
+        
+        }
+        
+        .blockItems h1{
+        border: 10px solid #5e1d00 ;
+        padding: 20px;
+        background-color: #5e1d00;
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: bolder;
+        border-radius: 70px;
+        margin-bottom: 50px;
+        }
+        
+        .textArea {
+            width: 60%;
+            margin: auto;
+        }
+        
+        .textArea label {
+         font-weight: bolder;
+        }
+        
+        .textArea .input {
+            border: 5px solid #5e1d00;
+            border-radius: 30px;
+            padding: 10px;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        
+        .button {
+            width: 60%;
+            margin: auto;
+            margin-bottom: 60px;
+        }
+        
+        .button button {
+             text-decoration: none;
+            color: white;
+            font-weight: bolder;
+            background-color: #5e1d00;
+            border: #5e1d00;
+            width: 150px;
+            padding: 15px;
+            color: white;
+            border-radius: 30px;
+            float: left;
+            margin-right: 20px;
+        }
+        
+        .button {
+            text-decoration: none;
+            color: white;
+            font-weight: bolder;
+        }
+        
+        .filter {
+            width: 60%;
+            margin: auto; 
+          
+        }
+        
+        select {
+            width: 250px;
+            height: 40px;
+            text-align: center;
+            color: #5e1d00;
+            font-weight: bolder;
+            padding: 10px;
+            height: 50px;
+            background-color: white;
+            border: 5px solid #5e1d00;
+            border-radius: 30px;
+        }
+        
+        .filter {
+            font-weight: bolder;
+        }
+        
+        .value {
+            font-weight: bolder;
+            color: #5e1d00;
+            text-align: center;
+        }
+        
+        .registrations{
+    
+            width: 60%;
+            margin: auto;
+        
+        }
+        .registrations .displayTown {
+            display: block;
+        }
+        
+        .reg {
+            margin: 30px;
+            color: white;
+            width: 200px;
+            padding: 20px;
+            background-color: #5e1d00;
+            font-weight: bolder;
+            border-radius: 30px;
+            text-align: center;
+        }
+}
+
+
+
+@media (max-width: 540px){
+    body {
+        margin: auto;
+        width: 100%;
+        font-family: helvetica;
+        color: 	#5e1d00;
+        border: 10px 0px 10px 10px solid #5e1d00;
+        border-radius: 30px;
+        height: 1000px;
+        
+        }
+        
+        .blockItems h1{
+        border: 10px solid #5e1d00 ;
+        padding: 20px;
+        background-color: #5e1d00;
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: bolder;
+        border-radius: 70px;
+        margin-bottom: 50px;
+        }
+        
+        .textArea {
+            width: 60%;
+            margin: auto;
+        }
+        
+        .textArea label {
+         font-weight: bolder;
+        }
+        
+        .textArea .input {
+            border: 5px solid #5e1d00;
+            border-radius: 30px;
+            padding: 10px;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        
+        .button {
+            width: 60%;
+            margin: auto;
+            margin-bottom: 60px;
+        }
+        
+        .button button {
+             text-decoration: none;
+            color: white;
+            font-weight: bolder;
+            background-color: #5e1d00;
+            border: #5e1d00;
+            width: 150px;
+            padding: 15px;
+            color: white;
+            border-radius: 30px;
+            float: left;
+            margin-right: 20px;
+        }
+        
+        .button {
+            text-decoration: none;
+            color: white;
+            font-weight: bolder;
+        }
+        
+        .filter {
+            width: 60%;
+            margin: auto; 
+          
+        }
+        
+        select {
+            width: 250px;
+            height: 40px;
+            text-align: center;
+            color: #5e1d00;
+            font-weight: bolder;
+            padding: 10px;
+            height: 50px;
+            background-color: white;
+            border: 5px solid #5e1d00;
+            border-radius: 30px;
+        }
+        
+        .filter {
+            font-weight: bolder;
+        }
+        
+        .value {
+            font-weight: bolder;
+            color: #5e1d00;
+            text-align: center;
+        }
+        
+        .registrations{
+    
+            width: 60%;
+            margin: auto;
+        
+        }
+        .registrations .displayTown {
+            display: block;
+        }
+        
+        .reg {
+            margin: 30px;
+            color: white;
+            width: 200px;
+            padding: 20px;
+            background-color: #5e1d00;
+            font-weight: bolder;
+            border-radius: 30px;
+            text-align: center;
+        }
+        
+}
+
