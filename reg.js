@@ -11,6 +11,7 @@ var resetButtonElement = document.querySelector(".reset");
 
 // ERROR MESSAGE ELEMENT
 var errorMsgElement = document.querySelector(".errors");
+var successMsgElement = document.querySelector(".success");
 
 var userReg = [];
 
@@ -55,8 +56,8 @@ function getUserRegistrations(){
             registrationInstanceFactory.regList(reg);
             
             setTimeout(function(){
-                errorMsgElement.innerHTML = reg + successMsg
-            }), 2000;
+                successMsgElement.innerHTML = reg + successMsg
+            }, 2000);
            
         }
     })
@@ -85,7 +86,7 @@ townOptionsElement.onchange = function() {
         displayTownElement.removeChild(displayTownElement.firstChild);
         }
     
-    var nothingToDisplay = "There are no registrations to display in this town.";
+    var nothingToDisplay = "There are no registrations to display in this";
     var townFiltered = townOptionsElement.selectedIndex;
 
     var regAvailable = townOptionsElement.options[townFiltered].value;
@@ -95,7 +96,7 @@ townOptionsElement.onchange = function() {
    
     if(regAvailable){
         filterResults.forEach(displayRegNumbers);
-    }else if (regAvailable = []){
+    }else if (regAvailable === []){
         displayTownElement.innerHTML = nothingToDisplay;
     }
 }

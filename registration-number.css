@@ -32,7 +32,18 @@ margin-bottom: 50px;
 .textArea label {
  font-weight: bolder;
 }
-
+.test {
+    width: 350px;
+    background-color: goldenrod;
+    color: white;
+    padding: 20px;
+    border-radius: 30px;
+    text-align: center;
+    margin: auto;
+}
+.hey :hover {
+    background-color: #5e1d00;
+}
 .textArea .input {
     border: 5px solid #5e1d00;
     border-radius: 30px;
@@ -40,11 +51,40 @@ margin-bottom: 50px;
     width: 300px;
     margin-bottom: 20px;
 }
+.twoButtons{
+    display : flex;
+    width: 70%;
+    margin: auto;
+}
 
-.button {
+.textInput .listButton {
+display: block;
+margin: auto;
+width: 60%;
+float: right;
+}
+
+.listButton button {
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    background-color: #5e1d00;
+    border: #5e1d00;
+    width: 150px;
+    padding: 15px;
+    color: white;
+    border-radius: 30px;
+    float: left;
+    margin-right: 20px;
+}
+.blockItems .button {
+    display: block;
     width: 60%;
     margin: auto;
-    margin-bottom: 60px;
+    margin-bottom: 0px;
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
 }
 
 .button button {
@@ -58,19 +98,15 @@ margin-bottom: 50px;
     color: white;
     border-radius: 30px;
     float: left;
+    margin-bottom: 40px;
     margin-right: 20px;
    
-}
-
-.button {
-    text-decoration: none;
-    color: white;
-    font-weight: bolder;
 }
 
 .filter {
     width: 60%;
     margin: auto; 
+    margin-top: 0;
   
 }
 
@@ -108,6 +144,7 @@ select {
 
 .reg {
     margin: 10px;
+    margin-left:-35px;
     color: white;
     width: 210px;
     padding: 15px;
@@ -123,180 +160,14 @@ select {
     font-weight: bold;
 
 }
+.success {
+    text-align: center;
+    color: green;
+    font-weight: bold;  
+}
 
 .button a {
-    color: gold;
+    color: white;
     text-decoration: none;
 }
-
-
-@media (max-width: 1024px){
-    body {
-        margin: auto;
-        width: 60%;
-        font-family: helvetica;
-        color: 	#5e1d00;
-        border: 10px 0px 10px 10px solid #5e1d00;
-        border-radius: 30px;
-        height: 1000px;
-        
-        }
-        
-        .blockItems h1{
-        border: 10px solid #5e1d00 ;
-        padding: 20px;
-        background-color: #5e1d00;
-        color: white;
-        text-transform: uppercase;
-        text-align: center;
-        font-weight: bolder;
-        border-radius: 70px;
-        margin-bottom: 50px;
-        }
-        
-        .textArea {
-            width: 60%;
-            margin: auto;
-        }
-        
-        .textArea label {
-         font-weight: bolder;
-        }
-        
-        .textArea .input {
-            border: 5px solid #5e1d00;
-            border-radius: 30px;
-            padding: 10px;
-            width: 300px;
-            margin-bottom: 20px;
-        }
-        
-        .button {
-            display: block;
-            width: 60%;
-            margin: auto; 
-            margin-bottom: 200px;
-        }
-        
-        .button button {
-            text-decoration: none;
-            color: white;
-            font-weight: bolder;
-            background-color: #5e1d00;
-            border: #5e1d00;
-            width: 250px;
-            padding: 15px;
-            color: white;
-            border-radius: 30px;
-            float: left;
-            margin: auto;
-            margin-top: 10px;
-        }
-        
-        .button  a{
-            text-decoration: none;
-            color: white;
-            font-weight: bolder;
-        }
-        
-        .filter {
-            width: 60%;
-            margin: auto; 
-          
-        }
-        
-        select {
-            width: 250px;
-            height: 40px;
-            text-align: center;
-            color: #5e1d00;
-            font-weight: bolder;
-            padding: 10px;
-            height: 50px;
-            background-color: white;
-            border: 5px solid #5e1d00;
-            border-radius: 30px;
-        }
-        
-        .filter {
-            font-weight: bolder;
-        }
-        
-        .value {
-            font-weight: bolder;
-            color: #5e1d00;
-            text-align: center;
-        }
-        
-        .registrations{
-    
-            width: 60%;
-            margin: auto;
-        
-        }
-        .registrations .displayTown {
-            display: block;
-        }
-        
-        .reg {
-            margin: 30px;
-            color: white;
-            width: 200px;
-            padding: 20px;
-            background-color: #5e1d00;
-            font-weight: bolder;
-            border-radius: 30px;
-            text-align: center;
-        }
-        
-}
-
-@media (max-width: 360px){
-   body {
-    margin-left: 40px;
-   }
-    .blockItems h1 {
-        font-size: 20px;
-        text-transform: capitalize;
-        width: 110%;
-        border-radius: 30px;
-        padding: 7px;
-        margin: auto;
-    }
-
-    .textArea
-    {
-        display: block;
-        width: 100%;
-        margin-left: 20px;
-        text-align: center;
-    }
-
-    .textArea .input {
-        width: 85%;
-        margin-left: 10px;
-        text-align:center;
-        font-size: 10px;
-    }
-    .button button {
-        width: 190px;   
-    }
-
-    .town {
-        width: 210px;
-        text-align: center;
-    }
-
-    .class {
-        text-align: center;
-    }
-
-    .reg {
-        margin-left: -53px;
-        float: left;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-}
-
 

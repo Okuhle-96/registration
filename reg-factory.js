@@ -2,6 +2,7 @@ function registrationFactoryFunction() {
 
     // var userReg = [];
     var regex = /^((CJ|CY|CL|CA)\s\d{3}\s\d{3})$/;
+    var capeCities = [];
 
     var towns = {
       'CJ' : 'Paarl',
@@ -26,6 +27,14 @@ function registrationFactoryFunction() {
       userReg.unshift(inputReg);
     }
 
+    function inputTown(town){
+      if(town.startsWith("CA") || town.startsWith("CJ") ||
+         town.startsWith("CL") || town.startsWith("CY")){
+          capeCities.push(town);
+         }
+         return capeCities;
+    }
+
     function registrations(inputReg) {
 
         var str = '';
@@ -41,26 +50,28 @@ function registrationFactoryFunction() {
           if(car.startsWith(str)) {
            townFiltered.push(car);
            }
+
       });
-
+ 
       return townFiltered;
-
+      
+    
     }
 
   
-    // function returnErrors(town){
-    //     if(regex.test(reg)) {
-    //           if(reg === town){
-    //             return reg + exists;        
-    //           }if (town === ""){
-    //             return nothingToAdd;        
-    //           }if(reg !== town){
-    //             return town + successMsg;           
-    //           }
-    //     }else {
-    //       return correctFormat;   
-    //     }
-    // }
+    function returnErrors(town){
+        if(regex.test(reg)) {
+              if(reg === town){
+                return reg + exists;        
+              }if (town === ""){
+                return nothingToAdd;        
+              }if(reg !== town){
+                return town + successMsg;           
+              }
+        }else {
+          return correctFormat;   
+        }
+    }
 
  
     function checkRegNumbers(reg) {
@@ -73,6 +84,7 @@ function registrationFactoryFunction() {
             invalidRegistrations++;
             duplicates.push(reg);
             isValid = false;
+            return exists;
           } else {
             validRegistrations++;
           }
@@ -81,9 +93,11 @@ function registrationFactoryFunction() {
         invalidRegistrations++;
         invalidRegNums.push(reg);
         isValid = false;
+        return reg + correctFormat;
       }
       return isValid;
     }
+
 
     function caseFormat(str) {
 
@@ -96,6 +110,7 @@ function registrationFactoryFunction() {
       });
       return list;
     }
+
 
     function spaceCheck(reg) {
       
@@ -114,8 +129,9 @@ function registrationFactoryFunction() {
         regList,
         checkRegNumbers,
         registrations,
-        // returnErrors,
+        returnErrors,
         spaceCheck,
+        inputTown,
         caseFormat
     }
 }
