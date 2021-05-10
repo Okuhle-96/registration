@@ -1,169 +1,110 @@
-// var inputTownElement = document.querySelector(".input");
-// var addButtonElement = document.querySelector(".addButton");
+// INPUT ELEMENT
+var inputTownElement = document.querySelector(".input");
 
-// var displayTownElement = document.querySelector(".displayTown");
-// var filteredTownElement = document.querySelector(".town");
+// DISPLAY ELEMENT
+var displayTownElement = document.querySelector(".displayTown");
+var townOptionsElement = document.querySelector(".town");
 
-// var userReg = [];
+// BUTTON ELEMENTS
+var addButtonElement = document.querySelector(".addButton");
+var resetButtonElement = document.querySelector(".reset");
 
-// // CREATING AN INSTANCE
-// var registrationFactoryInstance = registrationFactory();
+// ERROR MESSAGE ELEMENT
+var errorMsgElement = document.querySelector(".errors");
 
-// // SETTING THE LOCAL STORAGE
-// if (localStorage['towns']){
-//     town = localStorage['towns'];
-//     userReg = localStorage.getItem(town);
-//  }
-//  displayTownElement.innerHTML = userReg;
+var userReg = [];
 
-// //DISPLAYING REGISTRATIONS
-// function displayRegNumber(reg) {
-
-//     var registrations = document.createElement('li');
-
-//     registrations.innerHTML = reg;
-
-//     // registrations.className = 'town-list';
-//     // displayTownElement.append(registrations);
-
-//     // let towns = localStorage.getItem('towns');
-//     // const regArray = Object.keys(towns)    
-
-//     // regArray.forEach(town => {
-//     //     registrations.innerHTML += `<li>${town}</li>`;    
-//     // });
-//     displayTownElement.insertBefore(registrations,displayTownElement.firstChild)
-// }
-
-// userReg.forEach(displayRegNumber);
-
-// //GETTING REGISTRATIONS
-// function registration(){
-
-// //     var town = inputTownElement.value;
-
-// //             registrationFactoryInstance.getRegistration(town);
-// //             if(localStorage['towns']){
-// //                 localStorage.setItem("towns", JSON.stringify(registrationFactoryInstance.townList(town)));
-
-// //             }
-       
-// //      displayTownElement.innerHTML = registrationFactoryInstance.townList()
-
-// // displayRegNumber();
-// if (displayTownElement.firstChild){
-//     displayTownElement.removeChild(displayTownElement.firstChild);
-// }
-// document.querySelector('.town').selectedIndex = 0;
-// userReg.forEach(displayRegNumber);
-// invalidNum = 0;
-// validNum = 0;
-// duplicateRegNums = [];
-// invalidRegNums = [];
-// regEntered = document.querySelector(".input").value;
-// if (regEntered == "") {
-//     document.querySelector(".input").classList.add("no_value");
-//     setTimeout(function(){
-//         document.querySelector(".input").classList.remove("no_value");
-//     }, 1500)
-//     return;
-// }
-// }
-
-// addButtonElement.addEventListener("click", registration);
-
-var regList = [];
+// SETTING UP LOCAL STORAGE
 if(localStorage['towns']) {
-    regList = localStorage.getItem('towns').split(',')
+    userReg = localStorage.getItem('towns').split(',')
 }
 
-var filter = regNumFilter();
-var addBtn = document.querySelector(".addButton");
-var regDisplayList = document.querySelector(".displayTown");
-var townOptions = document.querySelector(".town");
-var resetBtn = document.querySelector(".reset");
-var clearBtn = document.querySelector(".clear");
+// CREATING AN INSTANCE FOR A FACTORY FUNCTION
+var registrationInstanceFactory = registrationFactoryFunction();
 
-function displayNum(regNum) {
-    var plate = document.createElement("LI");
-    plate.className = 'reg';
-    plate.innerHTML = regNum;
-    regDisplayList.insertBefore(plate,regDisplayList.firstChild);
+// CREATING A FUNCTION THAT WILL DISPLAY REG NUMBERS
+function displayRegNumbers(reg) {
+
+    var regNumber = document.createElement("li");
+
+    regNumber.className = 'reg';
+    regNumber.innerHTML = reg;
+
+    displayTownElement.insertBefore(regNumber, displayTownElement.firstChild);
 }
+userReg.forEach(displayRegNumbers);
 
-regList.forEach(displayNum);
+// CREATING A FUNCTION THAT WILL GET REGISTRATIONS FROM A USER
+function getUserRegistrations(){
 
-addBtn.addEventListener("click", function(){
-    while (regDisplayList.firstChild) {
-        regDisplayList.removeChild(regDisplayList.firstChild);
-    }
-    document.querySelector('.town').selectedIndex = 0;
-    regList.forEach(displayNum);
-    invalidNum = 0;
-    validNum = 0;
-    duplicateRegNums = [];
-    invalidRegNums = [];
-    regEntered = document.querySelector(".input").value;
-    if (regEntered == "") {
-        document.querySelector(".input").classList.add("no_value");
-        setTimeout(function(){
-            document.querySelector(".input").classList.remove("no_value");
-        }, 1500)
-        return;
-    }
-    
-    regEnteredList = filter.inputToList(regEntered);
-    regEnteredList.forEach(function(num,i){
-    setTimeout(function(){
-        if(filter.validityTest(num)) {
-            filter.addToList(num);
-            displayNum(num);
-            document.querySelector(".confirmation").classList.add("valid");
-            document.querySelector(".confirmation").innerHTML = num + " was added succesfully!";
-        } else {
-            document.querySelector(".confirmation").classList.add("invalid");
-            document.querySelector(".confirmation").innerHTML = num + " is invalid or a duplicate!" ;
-            
-        }  
-    },2000*i)
-})
+    while (displayTownElement.firstChild) {
+        displayTownElement.removeChild(displayTownElement.firstChild);
+     }
 
-setTimeout(function(){
-    localStorage.setItem('towns', regList.toString());
-
-    if (document.querySelector(".confirmation").classList.contains("invalid")) {
-        document.querySelector(".confirmation").classList.remove("invalid");
-    }
-    if (document.querySelector(".confirmation").classList.contains("valid")) {
-        document.querySelector(".confirmation").classList.remove("valid");
-    }
-    document.querySelector(".confirmation").innerHTML = "";
-}, 2000*(regEnteredList.length))
-document.querySelector(".input").value = "";
+    //  ERROR MESSAGES
+     var exists = " registration already exists!";
+     var correctFormat = " is not written in a correct format."
+     var nothingToAdd = "There is no registration to add. Please enter a valid registration.";
+     var successMsg = " was registered successfully!"
+    reg = inputTownElement.value;
    
-});
+    townList = registrationInstanceFactory.caseFormat(reg);
 
-townOptions.onchange = function() {
-    while (regDisplayList.firstChild) {
-        regDisplayList.removeChild(regDisplayList.firstChild);
+    townList.forEach(function(reg){
+        if(registrationInstanceFactory.checkRegNumbers(reg)) {
+            registrationInstanceFactory.regList(reg);
+            
+            setTimeout(function(){
+                errorMsgElement.innerHTML = reg + successMsg
+            }), 2000;
+           
+        }
+    })
+ 
+    localStorage.setItem('towns', userReg);
+    errorMsgElement.innerHTML = "";
+    inputTownElement.value = "";
+    townOptionsElement.selectedIndex = 0;
+
+    userReg.forEach(displayRegNumbers);
+}
+addButtonElement.addEventListener("click", getUserRegistrations)
+
+// FILTER EACH TOWN
+
+// townOptionsElement.addEventListener('change', (event) => {
+//     var townFiltered = townOptionsElement.selectedIndex;
+//     var regAvailable = townOptionsElement.options[townFiltered].value;
+//     var filterResults = registrationInstanceFactory.registrations(regAvailable);
+//     filterResults.forEach(displayRegNumbers);
+//   });
+
+townOptionsElement.onchange = function() {
+
+    while (displayTownElement.firstChild) {
+        displayTownElement.removeChild(displayTownElement.firstChild);
+        }
+    
+    var nothingToDisplay = "There are no registrations to display in this town.";
+    var townFiltered = townOptionsElement.selectedIndex;
+
+    var regAvailable = townOptionsElement.options[townFiltered].value;
+    var noReg = townOptionsElement.value;
+
+    var filterResults = registrationInstanceFactory.registrations(regAvailable);
+   
+    if(regAvailable){
+        filterResults.forEach(displayRegNumbers);
+    }else if (regAvailable = []){
+        displayTownElement.innerHTML = nothingToDisplay;
     }
-    var townSelected = document.querySelector('.town').selectedIndex;
-    var townList = filter.carsForTown(townOptions.options[townSelected].value);
-    townList.forEach(displayNum);
 }
 
-resetBtn.addEventListener('click', function(){
-    while (regDisplayList.firstChild) {
-        regDisplayList.removeChild(regDisplayList.firstChild);
-    }
-    localStorage.setItem('towns', "");
-    regList=[];
-});
-clearBtn.addEventListener('click', function(){
-    while (regDisplayList.firstChild) {
-        regDisplayList.removeChild(regDisplayList.firstChild);
-    }
-    document.querySelector('.town').selectedIndex = 0;
-    regList.forEach(displayNum);
-});
+// CLEAR TOWNS IN DOM AND STORAGE
+function resetReg(){
+    displayTownElement.innerHTML = "";
+    userReg = [];
+    localStorage['towns'] = userReg;
+}
+resetButtonElement.addEventListener("click", resetReg)
 

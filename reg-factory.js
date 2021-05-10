@@ -1,159 +1,121 @@
-// function registrationFactory(){
+function registrationFactoryFunction() {
 
-//     var userReg = []; 
-//     var regex = /^((CA|CJ|CY|CL)\s\d{3}\s\d{3})$/;
-//     var towns = {
-//         "CA" : "Cape Town",
-//         "CY" : "Bellville",
-//         "CJ" : "Paarl",
-//         "CL" : "Stellenbosch"
-//     }
-    
-//     function getRegistration(reg){
-//         console.log(reg + "hshshshwhwhh")
+    // var userReg = [];
+    var regex = /^((CJ|CY|CL|CA)\s\d{3}\s\d{3})$/;
 
-//         if(reg.startsWith("CA") || reg.startsWith("CJ") ||
-//            reg.startsWith("CY") || reg.startsWith("CL")){
-//             userReg.push(reg);
-//         }
-//     }
-
-
-//     function filterTown(townFiltered){
- 
-//         var filteredTown = [];
-
-//         for (var town in towns) {
-//            if (towns[town] === townFiltered) {
-//               towns = town;
-//           }
-//         }
-       
-//         userReg.forEach(function(town) {
-//           if(town.startsWith('CA') || town.startsWith('CY') || 
-//              town.startsWith('CL') || town.startsWith('CJ')) {
-//            filteredTown.push(town);
-//            }
-//       });
-//       return filteredTown;
-//     }
-
-//     function townList(){
-// return userReg;
-//     }
-
-//     function returnErrors(town){
-//         if (town === ""){
-//             return "Please Enter Your REG Number";
-//         }else if(town > 9){
-//             return "Please Enter Town With Correct Length!"
-//         } if (town !== regex){
-//             return "Invalid Town"
-//         }
-//     }
-
-//     return {
-//         getRegistration,
-//         returnErrors,
-//         filterTown,
-//         townList
-//     }
-   
-// }
-
-var validNum = 0;
-var invalidNum = 0;
-var duplicateRegNums = [];
-var invalidRegNums = [];
-
-
-function regNumFilter() {
-
-
-    const towns = {
-        'CJ' : 'Paarl',
-        'CY' : 'Bellville',
-        'CL' : 'Stellenbosch',
-        'CK' : 'Malmesbury',
-        'CA' : 'Cape Town',
-        'CF' : 'Kuilsriver'
+    var towns = {
+      'CJ' : 'Paarl',
+      'CY' : 'Bellville',
+      'CL' : 'Stellenbosch',
+      'CA' : 'Cape Town',
     }
 
-    function addToList(inputReg) {
-        regList.unshift(inputReg);
+    // SETTING ERROR MESSAGES
+    var exists = " registration already exists!";
+    var correctFormat = " is not written in a correct format."
+    var nothingToAdd = "There is no registration to add. Please enter a valid registration.";
+    var successMsg = " was registered successfully!"
+
+    // VALIDATIONS
+    var validRegistrations;
+    var invalidRegistrations;
+    var duplicates = [];
+    var invalidRegNums = [];
+
+    function regList(inputReg) {
+      userReg.unshift(inputReg);
     }
 
-    function carsForTown(townName) {
-        var townPrefix = '';
-        var townCars = [];
-        var town
-          for (town in towns) {
-            if (towns[town] === townName) {
-              townPrefix = town;
+    function registrations(inputReg) {
+
+        var str = '';
+        var townFiltered = [];
+  
+          for (var town in towns) {
+            if (towns[town] === inputReg) {
+              str = town;
             }
         }
        
-      regList.forEach(function(car) {
-          if(car.startsWith(townPrefix)) {
-           townCars.push(car);
+      userReg.forEach(function(car) {
+          if(car.startsWith(str)) {
+           townFiltered.push(car);
            }
       });
-      return townCars;
+
+      return townFiltered;
+
     }
 
-    function validityTest(reg) {
-      var pattern = /^((CJ|CY|CL|CK|CA|CAA|CF)\s\d{3}\s\d{3})$/;
-      var validity = true;
+  
+    // function returnErrors(town){
+    //     if(regex.test(reg)) {
+    //           if(reg === town){
+    //             return reg + exists;        
+    //           }if (town === ""){
+    //             return nothingToAdd;        
+    //           }if(reg !== town){
+    //             return town + successMsg;           
+    //           }
+    //     }else {
+    //       return correctFormat;   
+    //     }
+    // }
 
-      if(pattern.test(reg)) {
-        regList.forEach(function(x){
-          if(x == reg) {
-            invalidNum++;
-            duplicateRegNums.push(reg);
-            validity = false;
+ 
+    function checkRegNumbers(reg) {
+      var regex = /^((CJ|CY|CL|CA)\s\d{3}\s\d{3})$/;
+      var isValid = true;
+
+      if(regex.test(reg)) {
+        userReg.forEach(function(car){
+          if(car == reg) {
+            invalidRegistrations++;
+            duplicates.push(reg);
+            isValid = false;
           } else {
-            validNum++;
+            validRegistrations++;
           }
         });
       } else {
-        invalidNum++;
+        invalidRegistrations++;
         invalidRegNums.push(reg);
-        validity = false;
+        isValid = false;
       }
-      return validity;
+      return isValid;
     }
 
-    function spaceCheck(num) {
-      var str = num
-      num = str.replace(/ /g,'');
-      var patNoSpaces = /^((CJ|CY|CL|CK|CA|CF)\d{3}\d{3})$/;
-       
-        if (patNoSpaces.test(num)) {
-            num = num.substring(0,2)+' '+num.substring(2,5)+' '+num.substring(5);
-        }
-        var patNoSpaces = /^(CAA\d{3}\d{3})$/;
-       
-        if (patNoSpaces.test(num)) {
-            num = num.substring(0,3)+' '+num.substring(3,6)+' '+num.substring(6);
-        }
-        return num;
-    }
+    function caseFormat(str) {
 
-    function inputToList(str) {
       str = str.toUpperCase();
+    
       var list = str.split(',');
-      list.forEach(function(value,i,list){
-        value = value.trim();
-        list[i] = spaceCheck(value);
+        list.forEach(function(regValue, index ,list){
+        regValue = regValue.trim();
+        list[index] = spaceCheck(regValue);
       });
       return list;
     }
 
+    function spaceCheck(reg) {
+      
+      var str = reg
+      reg = str.replace(/ /g,'');
+      var regex = /^((CJ|CY|CL|CA)\d{3}\d{3})$/;
+      
+      if (regex.test(reg)) {
+        reg = reg.substring(0,2) + " " + reg.substring(2,5) + " " + reg.substring(5);
+        }
+        
+        return reg;
+    }
+
     return {
-        addToList,
-        carsForTown,
-        validityTest,
+        regList,
+        checkRegNumbers,
+        registrations,
+        // returnErrors,
         spaceCheck,
-        inputToList
+        caseFormat
     }
 }
