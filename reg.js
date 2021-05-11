@@ -8,6 +8,7 @@ var townOptionsElement = document.querySelector(".town");
 // BUTTON ELEMENTS
 var addButtonElement = document.querySelector(".addButton");
 var resetButtonElement = document.querySelector(".reset");
+var refreshBtnElement = document.querySelector(".clear");
 
 // ERROR MESSAGE ELEMENT
 var errorMsgElement = document.querySelector(".errors");
@@ -43,27 +44,41 @@ function getUserRegistrations(){
      }
 
     //  ERROR MESSAGES
-     var exists = " registration already exists!";
-     var correctFormat = " is not written in a correct format."
+    //  var exists = " registration already exists!";
+     var correctFormat = " is not written in a correct format or is a duplicate."
      var nothingToAdd = "There is no registration to add. Please enter a valid registration.";
      var successMsg = " was registered successfully!"
     reg = inputTownElement.value;
-   
     townList = registrationInstanceFactory.caseFormat(reg);
+
+    if (reg == "") {
+
+        errorMsgElement.innerHTML = nothingToAdd;
+
+                setTimeout(function(){
+                    errorMsgElement.innerHTML = "";
+                }, 2000)
+            }
 
     townList.forEach(function(reg){
         if(registrationInstanceFactory.checkRegNumbers(reg)) {
             registrationInstanceFactory.regList(reg);
+            successMsgElement.innerHTML = reg + successMsg;
+            setTimeout(function(){
+                successMsgElement.innerHTML = "";
+            }, 2000) 
+        }else if(userReg.includes(reg)){
+
+            errorMsgElement.innerHTML = reg + correctFormat;
             
             setTimeout(function(){
-                successMsgElement.innerHTML = reg + successMsg
-            }, 2000);
-           
-        }
+                errorMsgElement.innerHTML = "";
+            }, 2000)             
+      }  
     })
  
     localStorage.setItem('towns', userReg);
-    errorMsgElement.innerHTML = "";
+    // errorMsgElement.innerHTML = "";
     inputTownElement.value = "";
     townOptionsElement.selectedIndex = 0;
 
@@ -108,4 +123,14 @@ function resetReg(){
     localStorage['towns'] = userReg;
 }
 resetButtonElement.addEventListener("click", resetReg)
+
+// REFRESH PAGE AND DISPLAY ALL DATA
+function refreshPage(){
+    while (displayTownElement.firstChild) {
+        displayTownElement.removeChild(displayTownElement.firstChild);
+    }
+    townOptionsElement.selectedIndex = 0;
+    userReg.forEach(displayRegNumbers);
+
+}refreshBtnElement.addEventListener('click', refreshPage)
 

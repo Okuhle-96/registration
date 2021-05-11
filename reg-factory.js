@@ -58,7 +58,6 @@ function registrationFactoryFunction() {
     
     }
 
-  
     function returnErrors(town){
         if(regex.test(reg)) {
               if(reg === town){
@@ -72,7 +71,6 @@ function registrationFactoryFunction() {
           return correctFormat;   
         }
     }
-
  
     function checkRegNumbers(reg) {
       var regex = /^((CJ|CY|CL|CA)\s\d{3}\s\d{3})$/;
@@ -84,7 +82,7 @@ function registrationFactoryFunction() {
             invalidRegistrations++;
             duplicates.push(reg);
             isValid = false;
-            return exists;
+            
           } else {
             validRegistrations++;
           }
@@ -93,7 +91,7 @@ function registrationFactoryFunction() {
         invalidRegistrations++;
         invalidRegNums.push(reg);
         isValid = false;
-        return reg + correctFormat;
+        
       }
       return isValid;
     }
