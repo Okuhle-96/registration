@@ -27,7 +27,7 @@ var registrationInstanceFactory = registrationFactoryFunction();
 // CREATING A FUNCTION THAT WILL DISPLAY REG NUMBERS
 function displayRegNumbers(reg) {
 
-    var regNumber = document.createElement("ul");
+    var regNumber = document.createElement("p");
 
     regNumber.className = 'reg';
     regNumber.innerHTML = reg;

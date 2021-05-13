@@ -145,21 +145,29 @@ select {
 
 }
 .registrations .displayTown {
-    /* display: flex; */
-    /* margin: 20px; */
+    display: flex;
+    margin-left: -50px;
+    position: relative;
     width: 100%;
-float: inline-start;
 }
 
-/* .displayTown {
-    display: flex;
-} */
+
+.registrations .displayTown::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.registrations .displayTown::before {
+     content: '\A'; 
+     white-space: pre; 
+    }
 
 .reg {
     margin: 20px;
-    margin-left:-50px;
+    /* margin-left:-50px; */
     color: #5e1d00;
-    width: 200px;
+    width: 12%;
     padding: 15px;
     background-color: #fff;
     border: 5px solid #5e1d00;

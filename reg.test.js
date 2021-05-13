@@ -1,15 +1,41 @@
 
-var regex = /^((CJ|CY|CL|CA)\s\d{3}\s\d{3})$/;
-var reg = "CA 199 199"
+var regex = /^((CJ|CY|CL|CA)\s\d{3}\s\d{3})$/ || /^((CJ|CY|CL|CA)\s\d{3}-\d{3})$/ ;
+var reg = "CA 199 199" || "CA 199-199"
 var userReg = [];
 describe("Registration Numbers", function(){
+
+
+
+    describe("should be able to take in any registrations from The Western Cape", function(){
+        it("should be able to return registration number written in space format", function() {
+          let reg = registrationFactoryFunction();
+         
+          assert.equal("CA 199 299", reg.inputTown('CA 199 299'));
+            
+        });
+        it("should be able to return registration number written in dash format", function() {
+          let reg = registrationFactoryFunction();
+         
+          assert.equal("CY 199-299", reg.inputTown('CY 199-299'));
+            
+        });
+      });
 
     describe("should be able to take in any registrations from The Western Cape", function(){
         it("should be able to return registration number from Cape Town", function() {
           let reg = registrationFactoryFunction();
-          var regex = /^((CJ|CY|CL|CA)\s\d{3}\s\d{3})$/;
+         
           assert.equal("CA 199 299", reg.inputTown('CA 199 299'));
+            
         });
+
+        it("should be able to return registration number from Cape Town", function() {
+          let reg = registrationFactoryFunction();
+         
+          assert.equal("CA 199-289", reg.inputTown('CA 199-289'));
+            
+        });
+
 
     it("should be able to return registration number from Bellville", function() {
       let reg = registrationFactoryFunction();
