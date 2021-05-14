@@ -11,7 +11,7 @@ function registrationFactoryFunction() {
 
   // SETTING ERROR MESSAGES
   var exists = " registration already exists!";
-  var correctFormat = " is not written in a correct format."
+  var correctFormat = "Registration is not written in a correct format."
   var nothingToAdd = "There is no registration to add. Please enter a valid registration.";
   var successMsg = " was registered successfully!"
 

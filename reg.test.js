@@ -16,7 +16,7 @@ describe("Registration Numbers", function(){
         it("should be able to return registration number written in a double dash format", function() {
           let reg = registrationFactoryFunction();
          
-          assert.equal("CY 199-299", reg.inputTown('CY 199-299'));
+          assert.equal("CY-199-299", reg.inputTown('CY-199-299'));
             
         });
         it("should be able to return registration number written in a single dash format", function() {
@@ -28,12 +28,7 @@ describe("Registration Numbers", function(){
       });
 
     describe("should be able to take in any registrations from The Western Cape", function(){
-        it("should be able to return registration number from Cape Town", function() {
-          let reg = registrationFactoryFunction();
-         
-          assert.equal("CA 199 299", reg.inputTown('CA 199 299'));
-            
-        });
+  
 
         it("should be able to return registration number from Cape Town", function() {
           let reg = registrationFactoryFunction();
@@ -58,29 +53,19 @@ describe("Registration Numbers", function(){
       assert.equal("CL 199 299", reg.inputTown('CL 199 299'));
     });
     
-    it("should return an empty array if the registration number is not recognised", function() {
-      let reg = registrationFactoryFunction();
-      assert.deepEqual([], reg.inputTown('CF 199 299'));
-    });
-    it("should return a success message if the town is successfully recognised", function() {
-      let reg = registrationFactoryFunction();
-      assert.deepEqual('CY 199 299 was registered successfully!', reg.returnErrors('CY 199 299'));
-    });
-
     });
 
 
   describe("should be able to return errors", function(){
 
-    it("should return an error message if the user input is empty", function() {
-      let reg = registrationFactoryFunction();
-      
-      assert.deepEqual('There is no registration to add. Please enter a valid registration.', reg.returnErrors(''));
-    });
 
-    it("should return an error message if the town already exists", function() {
+    it("should return an error message if the is not written in a correct format.", function() {
       let reg = registrationFactoryFunction();
-      assert.deepEqual('CA 199 199 registration already exists!', reg.returnErrors('CY 199 199'));
+      assert.deepEqual('Registration is not written in a correct format.', reg.returnErrors('CY 199 199'));
+    });
+    it("should return an empty array if the registration number is not recognised", function() {
+      let reg = registrationFactoryFunction();
+      assert.deepEqual([], reg.inputTown('CF 199 299'));
     });
   })
 
