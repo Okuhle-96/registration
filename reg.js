@@ -33,22 +33,32 @@ function displayRegNumbers(reg) {
     regNumber.innerHTML = reg;
 
     displayTownElement.insertBefore(regNumber, displayTownElement.firstChild);
-}
+    }
 userReg.forEach(displayRegNumbers);
 
 // CREATING A FUNCTION THAT WILL GET REGISTRATIONS FROM A USER
 function getUserRegistrations(){
+    //  ERROR MESSAGES
+    //  var exists = " registration already exists!";
+    var correctFormat = " is not written in a correct format or is a duplicate."
+    var nothingToAdd = "There is no registration to add. Please enter a valid registration.";
+    var successMsg = " was registered successfully!"
+   reg = inputTownElement.value;
 
     while (displayTownElement.firstChild) {
         displayTownElement.removeChild(displayTownElement.firstChild);
      }
 
-    //  ERROR MESSAGES
-    //  var exists = " registration already exists!";
-     var correctFormat = " is not written in a correct format or is a duplicate."
-     var nothingToAdd = "There is no registration to add. Please enter a valid registration.";
-     var successMsg = " was registered successfully!"
-    reg = inputTownElement.value;
+    var regex = /^((CJ|CY|CL|CA)\s\d{3}\s\d{3})$/; 
+    var regex1 = /^((CJ|CY|CL|CA)\-([0-9]){3}\-([0-9]){3})$/;
+    var regex2 = /^((CJ|CY|CL|CA)\-([0-9]){6})$/;
+    var regex3 = /^((CJ|CY|CL|CA)\s([0-9]){6})$/;
+
+
+    console.log("Testing the regex1:  " +regex1.test(reg))
+    console.log("Testing the regex2:  " +regex2.test(reg))
+    console.log("Testing the regex:  " +regex.test(reg))
+    console.log("Testing the regex3:  " +regex3.test(reg))
     townList = registrationInstanceFactory.caseFormat(reg);
 
     if (reg == "") {
@@ -86,14 +96,6 @@ function getUserRegistrations(){
 }
 addButtonElement.addEventListener("click", getUserRegistrations)
 
-// FILTER EACH TOWN
-
-// townOptionsElement.addEventListener('change', (event) => {
-//     var townFiltered = townOptionsElement.selectedIndex;
-//     var regAvailable = townOptionsElement.options[townFiltered].value;
-//     var filterResults = registrationInstanceFactory.registrations(regAvailable);
-//     filterResults.forEach(displayRegNumbers);
-//   });
 
 townOptionsElement.onchange = function() {
 
@@ -107,7 +109,7 @@ townOptionsElement.onchange = function() {
     var regAvailable = townOptionsElement.options[townFiltered].value;
     var noReg = townOptionsElement.value;
 
-    var filterResults = registrationInstanceFactory.registrations(regAvailable);
+    var filterResults = registrationInstanceFactory.filterPerTown(regAvailable);
    
     if(regAvailable){
         filterResults.forEach(displayRegNumbers);

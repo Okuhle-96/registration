@@ -1,22 +1,28 @@
 
-var regex = /^((CJ|CY|CL|CA)\s\d{3}\s\d{3})$/ || /^((CJ|CY|CL|CA)\s\d{3}-\d{3})$/ ;
-var reg = "CA 199 199" || "CA 199-199"
+var regex = /^((CJ|CY|CL|CA)\s\d{3}\s\d{3})$/|/((CJ|CY|CL|CA)\-([0-9]){6})$/|/((CJ|CY|CL|CA)\-([0-9]){3}\-([0-9]){3})$/;
+var reg = "CA 199 199" || "CA-199199" || "CA-199-199"
 var userReg = [];
 describe("Registration Numbers", function(){
 
 
 
-    describe("should be able to take in any registrations from The Western Cape", function(){
+    describe("should be able to take registrations in TWO formats", function(){
         it("should be able to return registration number written in space format", function() {
           let reg = registrationFactoryFunction();
          
           assert.equal("CA 199 299", reg.inputTown('CA 199 299'));
             
         });
-        it("should be able to return registration number written in dash format", function() {
+        it("should be able to return registration number written in a double dash format", function() {
           let reg = registrationFactoryFunction();
          
           assert.equal("CY 199-299", reg.inputTown('CY 199-299'));
+            
+        });
+        it("should be able to return registration number written in a single dash format", function() {
+          let reg = registrationFactoryFunction();
+         
+          assert.equal("CY-199299", reg.inputTown('CY-199299'));
             
         });
       });
@@ -72,14 +78,9 @@ describe("Registration Numbers", function(){
       assert.deepEqual('There is no registration to add. Please enter a valid registration.', reg.returnErrors(''));
     });
 
-    it("should return an error message if the user input is empty", function() {
-      let reg = registrationFactoryFunction();
-      assert.deepEqual('There is no registration to add. Please enter a valid registration.', reg.returnErrors(''));
-    });
-
     it("should return an error message if the town already exists", function() {
       let reg = registrationFactoryFunction();
-      assert.deepEqual('CA 199 199 registration already exists!', reg.returnErrors('CA 199 199'));
+      assert.deepEqual('CA 199 199 registration already exists!', reg.returnErrors('CY 199 199'));
     });
   })
 
